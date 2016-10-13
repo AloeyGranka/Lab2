@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        
+       
+        
+
+        
+        <action name="findbook" class="action.FindBookByAuthor">
+            <result name="success">/WEB-INF/content/author_books.jsp</result>   
+        </action>
+        
+        
+        	
+        <action name="addbook" class="action.Addbook">
+            <result name="success" type = "redirect">showbooks.action</result>   
+            <result name="error" type = "redirect">detectNoAuthor.action</result>  
+        </action>
+        <action name="detectNoAuthor" class = "action.Addauthor" method = "detectNoAuthor">
+        	<result>/WEB-INF/content/insert_author.jsp</result>
+        </action>
+        
+        <action name="addauthor" class="action.Addauthor">
+            <result type = "redirect">showbooks.action</result>   
+        </action>
+        
+        
+          <action name="showbooks" class="action.Showbook2">
+            <result name="success">/WEB-INF/content/show_books.jsp</result>   
+        </action>
+        
+         <action name="display" class="action.ShowSomthing" >
+            <result name="success">/WEB-INF/content/somthing_detail.jsp</result>   
+        </action>
+        
+        <action name="updateshow" class="action.Updateshow" >
+            <result name="success">/WEB-INF/content/updatebook.jsp</result>   
+        
+        </action>
+        
+        <action name="showinsert" class="action.Success" >
+            <result name="success">insert_book.jsp</result>   
+        </action>
+        
+        <action name="showsearch" class="action.Success" >
+            <result name="success">search_author.jsp</result>   
+        </action>
+        
+        <action name="update" class="action.UpdateII" >
+            <result name ="success" type = "redirect">showbooks.action</result>   
+        </action>
+        
+        <action name="deletebook" class="action.Delete" >
+            <result type = "redirect">showbooks.action</result>    
+        </action>
+        
+        <action name="*">
+            <result>/WEB-INF/content/{1}.jsp</result>
+        </action>
+    </package>
+
+</struts>
+
